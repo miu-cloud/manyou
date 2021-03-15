@@ -22,3 +22,12 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+user name string
+     email string
+     password_digest string
+
+task title text
+     content text
+
+label title string
