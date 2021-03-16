@@ -1,20 +1,20 @@
-## テーブル！!!!!
+### テーブル！！！
 
-- User
+## User
 | colum             |  data  |
-|-------------------|--------|
+|:-----             |:----:  |
 | name              | string |
 | email             | string |
 | password_digest   | string |
 
-- Task
+## Task
 | colum             |  data  |
-|-------------------|--------|
+|:-----------------:|:------:|
 | title             | string |
 | user_id           | bigint |
 
-- Label
+## Label
 | colum             |  data  |
-|-------------------|--------|
+|:-----------------:|:------:|
 | title             | string |
 | task_id           | bigint |
