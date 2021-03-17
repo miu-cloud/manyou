@@ -12,3 +12,8 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+  view: 
+    task:
+      title: タイトル
+      content: 内容
+     
