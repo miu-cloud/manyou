@@ -12,8 +12,18 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+        deadline: 終了期限
+        
   view: 
     task:
       title: タイトル
       content: 内容
-     
+      deadline: 終了期限
+      created_at: 登録日時
+      state: ステータス
+      priority: 状態
+      task_name: タスク名
+      done: 完了
+      at_work: 着手中
+      not_started: 未着手
+    
