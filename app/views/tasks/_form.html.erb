@@ -21,6 +21,11 @@
     <%= form.label :deadline %>
     <%= form.datetime_field :deadline %>
   </div>
+  <div class="task_state">
+    <%= form.label :state %>
+    <%= form.select :state, [["not_started", 0 ], ["at_work", 1], ["done", 2]], {include_blank: ''} %>
+  </div>
+
   <%= form.submit %>
 <% end %>
 <%= link_to "タスク一覧画面にもどる", tasks_path %>
