@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
     validates :title, presence: true, length: { in: 1..75 }  
-    enum priority: { low: 0, medium: 1, haigh: 2 }
+    enum priority: { low: 0, medium: 1, high: 2 }
     enum state: { not_started: 0, at_work: 1, done: 2 }
 
     scope :title, -> ( title ) {where('title LIKE ?', "%#{title}%")}
