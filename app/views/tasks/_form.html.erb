@@ -23,11 +23,11 @@
   </div>
   <div class="task_state">
     <%= form.label :state %>
-    <%= form.select :state, ["not_started","at_work","done"], {include_blank: '選択して下さい'} %>
+    <%= form.select :state, ["未着手","着手中","完了"], {include_blank: '選択して下さい'} %>
   </div>
   <div class="task_priority">
     <%= form.label :priority %>
-    <%= form.select :priority, ["low","medium","high"], {include_blank: '選択して下さい'} %>
+    <%= form.select :priority, ["低","中","高"], {include_blank: '選択して下さい'} %>
   </div>
 
   <%= form.submit %>

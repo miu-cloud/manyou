@@ -4,7 +4,7 @@
     <%= f.label :title; t('view.task.task_name') %>
     <%= f.text_field :title %>
     <%= f.label :state; t('view.task.state') %>
-    <%= f.select :state, [["not_started", 0 ], ["at_work", 1], ["done", 2]], include_blank: "" %>
+    <%= f.select :state, [["未着手", 0 ], ["着手中", 1], ["完了", 2]], include_blank: "" %>
     <%= f.submit 'Search'%>
 <% end %>
 <table>
@@ -24,12 +24,15 @@
     <td ><%= task.created_at %></td>
     <td><%= task.state %></td>
     <td><%= task.priority %></td>
-    <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
-    <td><%= link_to "タスクを編集する", edit_task_path(task.id) %></td>
-    <td><%= link_to "タスクを削除する", task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= link_to "詳細", task_path(task.id) %></td>
+    <td><%= link_to "編集", edit_task_path(task.id) %></td>
+    <td><%= link_to "削除", task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
 <% end %>
 </table>
 <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 <%= link_to "優先順位でソートする", tasks_path(sort_expired_priority: "true") %>
 <%= link_to '新しくタスクを追加する', new_task_path %>
+<div>
+<%= paginate @tasks %>
+</div>
