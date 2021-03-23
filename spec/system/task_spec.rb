@@ -14,10 +14,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'タイトル', with: 'test_title'
         fill_in '内容', with: 'test_content'
         fill_in :task_deadline, with: '002022-03-18-15:00'
+        select 'not_started', from: :task_state
+        select 'low', from: :task_priority
         click_button '登録する'
+        # binding.irb
         expect(page).to have_content 'test_title'
         expect(page).to have_content 'test_content'
         expect(page).to have_content '2022-03-18 15:00'
+        expect(page).to have_content 'not_started'
+        expect(page).to have_content 'low'
       end
     end
   end
@@ -40,23 +45,24 @@ RSpec.describe 'タスク管理機能', type: :system do
   #       expect(task_list[1]).to have_content 'test_content'
   #     end
   #   end
-    context 'タスクが終了期限の降順に並んでいる場合' do
-      it '新しいタスクが一番上に表示される' do
-        # task = FactoryBot.create(:task, title: 'task')
-        # task = FactoryBot.create(:second_task, title: 'task')
-        # visit new_task_path
-        # fill_in 'タイトル', with: 'test_title'
-        # fill_in '内容', with: 'test_content'
-        # fill_in :task_deadline, with: '002021-03-19-15:00'
-        # click_button '登録する'
-        visit tasks_path
-        click_link '終了期限でソートする'
-        sort_expired = all('.sort_expired_row')
-        expect(sort_expired[0]).to have_content '2022-03-18 15:00'
-        expect(sort_expired[1]).to have_content '2022-03-19 15:00'
-        expect(sort_expired[2]).to have_content '2022-03-20 15:00'
-      end
-    end
+
+    # context 'タスクが終了期限の降順に並んでいる場合' do
+    #   it '新しいタスクが一番上に表示される' do
+    #     # task = FactoryBot.create(:task, title: 'task')
+    #     # task = FactoryBot.create(:second_task, title: 'task')
+    #     # visit new_task_path
+    #     # fill_in 'タイトル', with: 'test_title'
+    #     # fill_in '内容', with: 'test_content'
+    #     # fill_in :task_deadline, with: '002021-03-19-15:00'
+    #     # click_button '登録する'
+    #     visit tasks_path
+    #     click_link '終了期限でソートする'
+    #     sort_expired = all('.sort_expired_row')
+    #     expect(sort_expired[0]).to have_content '2022-03-18 15:00'
+    #     expect(sort_expired[1]).to have_content '2022-03-19 15:00'
+    #     expect(sort_expired[2]).to have_content '2022-03-20 15:00'
+    #   end
+    # end
   end
 
 #   describe '詳細表示機能' do

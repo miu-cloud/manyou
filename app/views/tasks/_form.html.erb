@@ -23,9 +23,14 @@
   </div>
   <div class="task_state">
     <%= form.label :state %>
-    <%= form.select :state, [["not_started", 0 ], ["at_work", 1], ["done", 2]], {include_blank: ''} %>
+    <%= form.select :state, ["not_started","at_work","done"], {include_blank: '選択して下さい'} %>
+  </div>
+  <div class="task_priority">
+    <%= form.label :priority %>
+    <%= form.select :priority, ["low","medium","high"], {include_blank: '選択して下さい'} %>
   </div>
 
   <%= form.submit %>
 <% end %>
 <%= link_to "タスク一覧画面にもどる", tasks_path %>
+

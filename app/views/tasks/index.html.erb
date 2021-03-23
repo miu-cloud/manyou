@@ -1,11 +1,11 @@
 <h1>タスク一覧</h1>
 <p><%= notice %></p>
-<%= form_with(method: :get, local: true) do |f| %>
-    <%= t 'view.task.task_name' %>
-    <%= f.text_field :search %>
-    <%= t 'view.task.state' %>
+<%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
+    <%= f.label :title; t('view.task.task_name') %>
+    <%= f.text_field :title %>
+    <%= f.label :state; t('view.task.state') %>
     <%= f.select :state, [["not_started", 0 ], ["at_work", 1], ["done", 2]], include_blank: "" %>
-    <%= f.submit t 'Search'%>
+    <%= f.submit 'Search'%>
 <% end %>
 <table>
   <tr>
@@ -23,7 +23,7 @@
     <td class= "sort_expired_row"><%= task.deadline %></td>
     <td ><%= task.created_at %></td>
     <td><%= task.state %></td>
-    <td><%#= task.priority %></td>
+    <td><%= task.priority %></td>
     <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
     <td><%= link_to "タスクを編集する", edit_task_path(task.id) %></td>
     <td><%= link_to "タスクを削除する", task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>

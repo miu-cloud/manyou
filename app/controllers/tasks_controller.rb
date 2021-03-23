@@ -1,12 +1,18 @@
 class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
     def index
-      @tasks = Task.all.order(created_at: :desc)
-       if params[:sort_expired]
-         @tasks = Task.all.order(deadline: :asc)
-       else
-         @tasks = Task.all.order(created_at: :desc)
-       end 
+      if params[:sort_expired]
+        @tasks = Task.all.order(deadline: :asc)
+      else
+        @tasks = Task.all.order(created_at: :desc)
+      end 
+      if params[:title].present?
+         @tasks = Task.title(params[:title])
+      elsif params[:state].present?
+         @tasks = Task.state(params[:state])
+      elsif
+        @tasks = Task.all.order(created_at: :desc)
+      end
     end
 
     def new

@@ -13,6 +13,12 @@ ja:
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
         deadline: 終了期限
+        done: 完了
+        at_work: 着手中
+        not_started: 未着手
+        low: 低
+        medium: 中
+        high: 高
         
   view: 
     task:
@@ -26,4 +32,7 @@ ja:
       done: 完了
       at_work: 着手中
       not_started: 未着手
+      low: 低
+      medium: 中
+      high: 高
     
