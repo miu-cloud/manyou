@@ -23,7 +23,4 @@ FactoryBot.define do
       priority{ '高'}
     end
 
-    # factory :four_task, class: Task do
-    #   title{ 'aaa'}
-    # end
   end
