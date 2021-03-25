@@ -1,3 +1,7 @@
 <h1>タスク詳細画面</h1>
-<p><%= t('task.title') %>: <%= @task.title %></p>
-<p><%= t('task.content') %>: <%= @task.content %></p>
+<p><%= t('view.task.title') %>: <%= @task.title %></p>
+<p><%= t('view.task.content') %>: <%= @task.content %></p>
+<p><%= t('view.task.created_at') %>: <%= @task.created_at %></p>
+<p><%= t('view.task.state') %>: <%= @task.state %></p>
+<p><%= t('view.task.priority') %>: <%= @task.priority %></p>
+<%= link_to '戻る', tasks_path %>

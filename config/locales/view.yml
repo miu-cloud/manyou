@@ -1,0 +1,16 @@
+ja:
+  tasks:
+    index:
+      title: タイトル
+      content: 内容
+      deadline: 終了期限
+      created_at: 登録日時
+      state: ステータス
+      priority: 状態
+      task_name: タスク名
+      done: 完了
+      at_work: 着手中
+      not_started: 未着手
+      low: 低
+      medium: 中
+      high: 高
