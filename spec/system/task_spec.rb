@@ -71,7 +71,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '該当タスクの内容が表示される' do
         # task = FactoryBot.create(:task, title: 'task')
         visit tasks_path
-        all('tbody tr')[0].click_link '詳細'
+        all('tbody tr')[3].click_link '詳細'
       end
     end
  end

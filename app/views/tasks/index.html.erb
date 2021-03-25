@@ -1,5 +1,4 @@
-  <div class="container">
-  <h1>タスク一覧</h1>
+ <h1>タスク一覧</h1>
   <p><%= notice %></p>
   <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
       <%= f.label :title; t('view.task.task_name') %>
@@ -26,9 +25,9 @@
     <td ><%= task.created_at %></td><!--.strftime("%Y年%m月%d日 %H:%M")--> 
     <td><%= task.state %></td>
     <td><%= task.priority %></td>
-    <td><%= link_to "詳細", task_path(task.id) %></td>
-    <td><%= link_to "編集", edit_task_path(task.id) %></td>
-    <td><%= link_to "削除", task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= link_to "詳細", task_path(task.id), class:"btn btn-default" %></td>
+    <td><%= link_to "編集", edit_task_path(task.id), class:"btn btn-default" %></td>
+    <td><%= link_to "削除", task_path(task.id),class:"btn btn-default", method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
   <% end %>
   </table>
@@ -38,5 +37,4 @@
   <div>
   <%= paginate @tasks %>
   </div>
-</div>
 

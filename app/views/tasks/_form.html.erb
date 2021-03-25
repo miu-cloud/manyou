@@ -1,4 +1,3 @@
- <div class="container"> 
   <%= form_with(model: @task, local: true) do |form| %>
     <% if @task.errors.any? %>
       <div id="error_explanation">
@@ -34,4 +33,3 @@
     <%= form.submit %>
   <% end %>
   <%= link_to "タスク一覧画面へ", tasks_path %>
-</div>
