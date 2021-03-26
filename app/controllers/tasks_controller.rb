@@ -4,9 +4,10 @@ class TasksController < ApplicationController
     PER=10
 
     def index
+
       # タイトルとステータス両方を絞り込む
       if params[:title].present? && params[:state].present?
-         @tasks = Task.page(params[:page]).title_search(params[:title]).state_search(params[:state]).per(PER)
+         @tasks = current_user.tasks.page(params[:page]).title_search(params[:title]).state_search(params[:state]).per(PER)
       # もしタイトルしか入力されない場合
       elsif params[:title].present?
          @tasks=Task.page(params[:page]).title_search(params[:title]).per(PER)
@@ -15,7 +16,7 @@ class TasksController < ApplicationController
          @tasks = Task.page(params[:page]).state_search(params[:state]).per(PER)
       # それ以外の場合、一覧画面へ（登録日時：降順）
       else
-         @tasks = Task.page(params[:page]).order(created_at: :desc).per(PER)
+         @tasks = current_user.tasks.page(params[:page]).order(created_at: :desc).per(PER)
       end
 
       if params[:sort_expired]
