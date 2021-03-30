@@ -16,7 +16,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+      redirect_to tasks_path, notice:'アクセス権限がありません！他のユーザーのタスクを見ることはできません' if current_user != @user
   end
+  
   private
   def user_params
     params.require(:user).permit(:name, :email, :password,
