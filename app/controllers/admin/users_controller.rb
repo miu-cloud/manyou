@@ -6,7 +6,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.select(:id, :name, :created_at, :admin)
+    # @users = User.all.includes(:user)
   end
 
   def create
@@ -22,8 +23,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to edit_admin_user_path, notice: 'ユーザーを編集しました！'
+      redirect_to admin_users_path, notice: 'ユーザーを編集しました！'
     else
       render :edit
     end
@@ -31,10 +33,12 @@ class Admin::UsersController < ApplicationController
  
  
   def edit
+    @user = User.find(params[:id])
   end
 
   def show
-    
+    @user = User.find(params[:id])
+    @tasks = @user.tasks
   end
 
   def destroy
@@ -46,7 +50,7 @@ class Admin::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                :password_confirmation)
+                                :password_confirmation, :admin)
   end
   def admin_user
     redirect_to tasks_path, notice:"権限がありません！管理者のみアクセス可能です" unless current_user.admin?
