@@ -5,6 +5,7 @@ FactoryBot.define do
     password { "111111" }
     admin { false }
   end
+  
   factory :admin, class: User do
     name { "管理者" }
     sequence(:email) { "admin@example.jp" }

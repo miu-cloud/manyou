@@ -1,14 +1,24 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task) { FactoryBot.create(:task, title: 'task') }
-  let!(:second_task) { FactoryBot.create(:second_task) }
-  let!(:third_task) { FactoryBot.create(:third_task) }
+  user = FactoryBot.create(:user) # 一般Userの変数
+  admin = FactoryBot.create(:admin) # Admin Userの変数
+  let!(:task) { FactoryBot.create(:task, title: 'task', user: user) }
+  let!(:second_task) { FactoryBot.create(:second_task, user: user) }
+  let!(:third_task) { FactoryBot.create(:third_task, user: user) }
+
+  def login(user)
+    visit new_session_path
+    fill_in 'session[email]', with: user.email
+    fill_in 'session[password]', with: user.password
+    click_button 'Log in'
+  end
   # before do
   #   visit tasks_path
   # end
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
+        login(user) #  9行目で定義されているloginメソッドを呼び 引数には3行目のuser変数を与えている
         visit new_task_path
         fill_in 'タイトル', with: 'test_title'
         fill_in '内容', with: 'test_content'
@@ -29,6 +39,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
         # task = FactoryBot.create(:task, title: 'task')
+        login(user)
         visit tasks_path
         expect(page).to have_content 'task'
       end
