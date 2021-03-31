@@ -1,6 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'ログイン機能', type: :system do
   let!(:user) {FactoryBot.create(:user)}
+  let!(:admin) {FactoryBot.create(:admin)}
 
   describe 'ユーザー登録機能' do
     context 'ユーザーを新規登録した場合' do
@@ -32,7 +33,26 @@ RSpec.describe 'ログイン機能', type: :system do
           click_on 'Log in'
           expect(page).to have_content '一般ユーザーのページ'
         end
-        
+    end
+    context 'ログインしている場合' do
+      before do
+        visit new_session_path
+        fill_in 'Email', with: 'user@example.jp'
+        fill_in 'Password', with: '111111'
+        click_on 'Log in'
+      end
+        it '自分のプロフィール画面に遷移' do
+          visit user_path(user.id)
+          expect(page).to have_content '一般ユーザーのページ'
+        end
+        it '他人の詳細画面にアクセスするとタスク一覧画面に遷移' do
+          visit user_path(admin.id)
+          expect(page).to have_content 'タスク一覧'
+        end
+        it 'ログアウトができる' do
+          click_link 'Logout'
+          expect(page).to have_content 'ログアウトしました'
+        end
     end
   end
 
