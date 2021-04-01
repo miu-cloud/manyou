@@ -4,6 +4,8 @@
       <%= f.text_field :title %>
       <%= f.label :state; t('view.task.state') %>
       <%= f.select :state, [["未着手", 0 ], ["着手中", 1], ["完了", 2]], include_blank: "" %>
+      <%= f.label :label; t('view.task.label') %>
+      <%= f.select("label_id", Label.pluck(:title, :id), { include_blank: true }) %>
       <%= f.submit 'Search'%>
   <% end %>
 
@@ -28,6 +30,9 @@
     <td><%= link_to "編集", edit_task_path(task.id), class:"btn btn-default" %></td>
     <td><%= link_to "削除", task_path(task.id),class:"btn btn-default", method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
+     <% task.labels.each do |label| %>
+        <%= label.title %>
+      <% end %>
   <% end %>
   </table>
   <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>

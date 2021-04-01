@@ -13,6 +13,10 @@ class TasksController < ApplicationController
       # もしステータスしか入力されない場合   
       elsif params[:state].present?
          @tasks = Task.page(params[:page]).state_search(params[:state]).per(PER)
+      # もしラベルしか入力されない場合  
+      elsif params[:label_id].present?
+        @tasks = current_user.tasks.page(params[:page])
+        @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }).per(PER)
       # それ以外の場合、一覧画面へ（登録日時：降順）
       else
          @tasks = current_user.tasks.page(params[:page]).order(created_at: :desc).per(PER)
@@ -61,7 +65,7 @@ class TasksController < ApplicationController
 
     private
     def task_params
-      params.require(:task).permit(:title, :content, :deadline, :state, :priority)
+      params.require(:task).permit(:title, { label_ids: [] }, :content, :deadline, :state, :priority)
     end
 
     def set_task
