@@ -1,0 +1,16 @@
+<h2>ユーザの編集</h2>
+<%= form_with(model:[:admin, @user], local: true) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :password%>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.radio_button :admin, :true %>
+  <%= f.label :管理者 %>
+  <%= f.radio_button :admin, :false %>
+  <%= f.label :一般ユーザー %>
+  <%= f.submit '変更する' %>
+<% end %>

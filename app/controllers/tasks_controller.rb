@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
-
     PER=10
 
     def index
+
       # タイトルとステータス両方を絞り込む
       if params[:title].present? && params[:state].present?
-         @tasks = Task.page(params[:page]).title_search(params[:title]).state_search(params[:state]).per(PER)
+         @tasks = current_user.tasks.page(params[:page]).title_search(params[:title]).state_search(params[:state]).per(PER)
       # もしタイトルしか入力されない場合
       elsif params[:title].present?
          @tasks=Task.page(params[:page]).title_search(params[:title]).per(PER)
@@ -15,7 +15,7 @@ class TasksController < ApplicationController
          @tasks = Task.page(params[:page]).state_search(params[:state]).per(PER)
       # それ以外の場合、一覧画面へ（登録日時：降順）
       else
-         @tasks = Task.page(params[:page]).order(created_at: :desc).per(PER)
+         @tasks = current_user.tasks.page(params[:page]).order(created_at: :desc).per(PER)
       end
 
       if params[:sort_expired]
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
     end
 
     def create
-      @task = Task.create(task_params)
+      @task = current_user.tasks.new(task_params)
         if @task.save
             redirect_to tasks_path, notice: "タスクを作成しました"
         else
@@ -65,7 +65,8 @@ class TasksController < ApplicationController
     end
 
     def set_task
-      @task = Task.find(params[:id])
+      # @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     end
 
  

@@ -5,6 +5,7 @@ FactoryBot.define do
       deadline{'2022-03-18 15:00'}
       state{ '未着手'}
       priority{ '低'}
+      # association :user
     end
 
     factory :second_task, class: Task do
@@ -13,6 +14,7 @@ FactoryBot.define do
       deadline{'2022-03-19 15:00'}
       state{ '着手中'}
       priority{ '中'}
+      # association :user
     end
 
     factory :third_task, class: Task do
@@ -21,6 +23,6 @@ FactoryBot.define do
       deadline{'2022-03-20 15:00'}
       state{ '完了'}
       priority{ '高'}
+      # association :user
     end
-
   end
