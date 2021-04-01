@@ -9,5 +9,5 @@ class Task < ApplicationRecord
 
     scope :title_search, -> ( title ) {where('title LIKE ?', "%#{title}%")}
     scope :state_search, -> ( state ) {where(state: state)}
-    # scope :priority, -> ( priority ) {where(priority: priority)}
+
 end

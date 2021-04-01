@@ -13,10 +13,11 @@
   <tr>
     <th><%= t('view.task.title') %></th>
     <th><%= t('view.task.content') %></th>
-    <th><%= t('view.task.deadline')%></th><!--link_to , tasks_path(sort_expired: "true")-->
+    <th><%= t('view.task.deadline') %></th><!--link_to , tasks_path(sort_expired: "true")-->
     <th><%= t('view.task.created_at') %></th>
     <th><%= t('view.task.state') %></th>
-    <th><%=t('view.task.priority')%></th><!-- link_to , tasks_path(sort_expired_priority: "true")-->
+    <th><%= t('view.task.priority') %></th><!-- link_to , tasks_path(sort_expired_priority: "true")-->
+    <th><%= t('view.task.label') %></th>
   </tr>
   <% @tasks.each do |task| %>
   <tr>
@@ -26,13 +27,13 @@
     <td ><%= task.created_at %></td><!--.strftime("%Y年%m月%d日 %H:%M")--> 
     <td><%= task.state %></td>
     <td><%= task.priority %></td>
+  <% task.labels.each do |label| %>
+    <td class = "label_test"><%= label.title %></td>
+  <% end %>
     <td><%= link_to "詳細", task_path(task.id), class:"btn btn-default" %></td>
     <td><%= link_to "編集", edit_task_path(task.id), class:"btn btn-default" %></td>
     <td><%= link_to "削除", task_path(task.id),class:"btn btn-default", method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
-     <% task.labels.each do |label| %>
-        <%= label.title %>
-      <% end %>
   <% end %>
   </table>
   <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
