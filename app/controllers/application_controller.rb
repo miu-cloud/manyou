@@ -10,4 +10,10 @@ class ApplicationController < ActionController::Base
       flash[:notice] = 'ログインして下さい！'
     end 
   end
+  #登録をしているユーザであれば新規登録画面にアクセスさせない
+  def not_register_new
+    if current_user
+      redirect_to tasks_path 
+    end 
+  end
 end
