@@ -18,8 +18,8 @@ end
     Task.create!(
         title: "test#{n + 1}",
         content: "テスト太郎#{n + 1}",
-        deadline: "002022-04-01#{n + 1}-15:00"
-        user_id: user.(first.id + n)
+        deadline: "002022-04-01#{n + 1}-15:00",
+        user_id: User.first.id + n
     )
 end
 
