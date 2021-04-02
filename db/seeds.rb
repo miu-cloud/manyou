@@ -9,8 +9,8 @@ User.create!(name:  "管理者",
     User.create!(
         email: "test#{n + 1}@test.com",
         name: "テスト太郎#{n + 1}",
-        password: 000000,
-        password_confirmation: 000000
+        password: "000000",
+        password_confirmation: "000000"
     )
 end
 
@@ -18,7 +18,7 @@ end
     Task.create!(
         title: "test#{n + 1}",
         content: "テスト太郎#{n + 1}",
-        deadline: "002022-04-01#{n + 1}-15:00",
+        deadline: "002022-04-01-15:00",
         user_id: User.first.id + n
     )
 end
