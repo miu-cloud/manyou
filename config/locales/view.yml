@@ -6,6 +6,7 @@ ja:
       deadline: 終了期限
       created_at: 登録日時
       state: ステータス
+      label: ラベル
       priority: 状態
       task_name: タスク名
       done: 完了

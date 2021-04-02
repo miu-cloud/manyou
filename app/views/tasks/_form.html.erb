@@ -17,7 +17,7 @@
       <%= form.label :content %>
       <%= form.text_field :content %>
     </div>
-      <div class="task_deadline">
+    <div class="task_deadline">
       <%= form.label :deadline %>
       <%= form.datetime_field :deadline %>
     </div>
@@ -29,7 +29,12 @@
       <%= form.label :priority %>
       <%= form.select :priority, ["低","中","高"], {include_blank: '選択して下さい'} %>
     </div>
-
-    <%= form.submit %>
+    <div class="task_label">
+      <%= form.label :lable %>
+      <%= form.collection_check_boxes(:label_ids, Label.all, :id, :title) %>
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   <% end %>
   <%= link_to "タスク一覧画面へ", tasks_path %>

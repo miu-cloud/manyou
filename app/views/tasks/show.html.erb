@@ -4,4 +4,7 @@
 <p><%= t('view.task.created_at') %>: <%= @task.created_at %></p>
 <p><%= t('view.task.state') %>: <%= @task.state %></p>
 <p><%= t('view.task.priority') %>: <%= @task.priority %></p>
+<% @task.labels.each do |label| %>
+<p><%= t('view.task.label') %>: <%= label.title %></p>
+<% end %>
 <%= link_to '戻る', tasks_path %>

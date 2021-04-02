@@ -21,6 +21,7 @@ ja:
         high: 高
         state: ステータス
         priority: 状態
+        label: ラベル
         
   view: 
     task:
@@ -30,6 +31,7 @@ ja:
       created_at: 登録日時
       state: ステータス
       priority: 状態
+      label: ラベル
       task_name: タスク名
       done: 完了
       at_work: 着手中
